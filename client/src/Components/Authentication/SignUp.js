@@ -23,6 +23,7 @@ const SignUp = () => {
 
     const [loading,setLoading] = useState('')
     const [show,setShow] = useState(false)
+
     const toast = useToast()
     const navigate = useNavigate()
     
@@ -83,6 +84,7 @@ const SignUp = () => {
             },
           };
           const {data}=await axios.post("/api/registeruser",{name:name,email:email,password:password,pic:pic.profilePic},config)
+          
           toast({
             title: 'Form submitted',
             status: 'success',
@@ -92,6 +94,7 @@ const SignUp = () => {
 
           localStorage.setItem("userInfo",JSON.stringify(data));
           setLoading(false);
+
           navigate('/chats')
          } catch (error) {
           toast({
@@ -99,6 +102,7 @@ const SignUp = () => {
             status: 'error',
             duration: 9000,
             isClosable: true,
+            description:"Please fill all the fields",
           })
           setLoading(false);
 

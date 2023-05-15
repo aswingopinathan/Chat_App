@@ -23,21 +23,16 @@ router.get("/", function (req, res, next) {
 
 router.get('/chats', function(req, res, next) {
   res.send(chat001);
-  // res.send('hello');
-
 }); 
 
 router.get('/chats/:id', function(req, res, next) {
-  // console.log(req.params.id);
   const singleChat = chats.find((c)=> c._id === req.params.id)
   res.send(singleChat)
   });
 
-// router.post("/upload", upload.array("upload"),uploadFileUsingMulter);
-// 
-
 router.post("/registeruser",upload.array("pic"), registerUser);
 router.post("/authuser", authUser);
+
 router.get("/searchuser", searchUser);
 
 router.post("/accesschat", accessChat);
@@ -48,7 +43,5 @@ router.put("/groupremove", removeFromGroup);
 
 router.post("/sendmessage", sendMessage);
 router.get("/:chatId", allMessages);
-router.post("/uploadfilemulter",upload.array("uploaded_file"),uploadFileUsingMulter);
 
-// 
 module.exports = router;
