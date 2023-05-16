@@ -66,13 +66,24 @@ module.exports = {
     },
     searchUser:async(req,res)=>{
         console.log("searchUser working");
+
+       try {
         const keyWord = req.query.search ? {
             $or:[
                 {name:{$regex:req.query.search,$options:"i"}},
             {email:{$regex:req.query.search,$options:"i"}}
             ]
         }:{}
-        const users = await userModel.find(keyWord)
-        res.send(users)
+        const users = await userModel.find(keyWord).find({_id:{$ne:req.user._id}})
+
+        if(users.length>0){
+            res.send(users)
+        }else{
+            throw new Error("user not found")
+        }
+       } catch (error) {
+        console.log(error.message);
+        res.send(error.message)
+       }
     }
 }

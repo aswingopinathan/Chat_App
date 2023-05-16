@@ -5,8 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const dotenv = require('dotenv')
 const connectDB = require('./config/db')
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var userRoutes = require('./routes/userRoutes');
+var chatRoutes = require('./routes/chatRoutes');
 var cors = require('cors');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
@@ -26,8 +26,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/user', userRoutes);
+app.use('/api/chat', chatRoutes);
+
 app.use(notFound);
 app.use(errorHandler);
 

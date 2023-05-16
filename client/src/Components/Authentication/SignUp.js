@@ -83,7 +83,7 @@ const SignUp = () => {
               "Content-Type": "multipart/form-data",
             },
           };
-          const {data}=await axios.post("/api/registeruser",{name:name,email:email,password:password,pic:pic.profilePic},config)
+          const {data}=await axios.post("/api/user/registeruser",{name:name,email:email,password:password,pic:pic.profilePic},config)
           
           toast({
             title: 'Form submitted',

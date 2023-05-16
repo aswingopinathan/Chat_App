@@ -13,9 +13,8 @@ const {
 const {
   sendMessage,
   allMessages,
-  uploadFileUsingMulter,
 } = require("../controllers/messageController");
-
+const verifyToken = require('../middleware/authMiddleware')
 
 router.get("/", function (req, res, next) {
   res.send("API running");
@@ -32,8 +31,7 @@ router.get('/chats/:id', function(req, res, next) {
 
 router.post("/registeruser",upload.array("pic"), registerUser);
 router.post("/authuser", authUser);
-
-router.get("/searchuser", searchUser);
+router.get("/searchuser",verifyToken, searchUser);
 
 router.post("/accesschat", accessChat);
 router.get("/fetchchat", fetchChats);

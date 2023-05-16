@@ -42,7 +42,7 @@ const Login = () => {
             "Content-Type": "application/json",
           },
         };
-        const {data}=await axios.post("/api/authuser",{email:email,password:password},config)
+        const {data}=await axios.post("/api/user/authuser",{email:email,password:password},config)
 
         toast({
           title: 'Credential Verified',
