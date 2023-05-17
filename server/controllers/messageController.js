@@ -3,6 +3,7 @@ const messageModel = require("../models/messageModel");
 const User = require("../models/userModel");
 
 module.exports = {
+
   sendMessage: async (req, res) => {
     const { chatId, content, userid } = req.body;
 
@@ -31,6 +32,7 @@ module.exports = {
       console.log("error", error);
     }
   },
+  
   allMessages: async (req, res) => {
     try {
       const messages = await messageModel.find({ chat: req.params.chatId })
@@ -43,12 +45,6 @@ module.exports = {
     }
   },
   
-  uploadFileUsingMulter: async (req, res) => {
-    const imgPath = req.files[0].path
-
-    res.status(200).json({imgPath:imgPath});
-
-  },
 };
 
 

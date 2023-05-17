@@ -45,6 +45,7 @@ module.exports = {
        }
 
     },
+
     authUser:async(req,res)=>{
         try {
             const { email, password} =req.body;
@@ -64,6 +65,7 @@ module.exports = {
             console.log('error',error);
         }
     },
+    
     searchUser:async(req,res)=>{
         console.log("searchUser working");
 
@@ -86,4 +88,5 @@ module.exports = {
         res.send(error.message)
        }
     }
+
 }
